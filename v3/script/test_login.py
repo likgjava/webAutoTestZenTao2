@@ -37,6 +37,9 @@ class TestLogin(unittest.TestCase):
         print("msg=", msg)
         alert.accept()
 
+        # 断言
+        self.assertIn("登录失败，请检查您的用户名或密码是否填写正确", msg)
+
     def test_login_pwd_is_error(self):
         # 业务操作: 登录功能-密码错误
         self.login_proxy.login("demo", "error")
@@ -48,6 +51,9 @@ class TestLogin(unittest.TestCase):
         print("msg=", msg)
         alert.accept()
 
+        # 断言
+        self.assertIn("登录失败，请检查您的用户名或密码是否填写正确", msg)
+
     def test_login_success(self):
         # 业务操作: 登录功能-登录成功
         self.login_proxy.login("demo", "123456")
@@ -56,3 +62,6 @@ class TestLogin(unittest.TestCase):
         # 获取页面标题
         title = self.driver.title
         print("title=", title)
+
+        # 断言
+        self.assertIn("我的地盘", title)
